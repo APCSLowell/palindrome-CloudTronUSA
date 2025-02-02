@@ -1,6 +1,8 @@
 import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
 import java.util.Scanner; // Import the Scanner class to read text files
+import java.util.List;
+import java.util.Arrays;
 
 public class PalindromeChecker {
   public void tester() {
@@ -36,8 +38,12 @@ public class PalindromeChecker {
   }
   
   public boolean palindrome(String word)  {
-    // no space, no uppercase
-    word = word.replace(" ", "");
+    // no space, no uppercase, no non-letters
+    List<String> banlist = Arrays.asList(" ", ",", "?", "!", "'", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
+        
+    for (String b : banlist)
+      word = word.replace(b, "");
+    
     word = word.toLowerCase();
 
     // check char by char
